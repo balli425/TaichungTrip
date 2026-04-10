@@ -665,6 +665,70 @@ footer strong{color:#fff;}
 <section id="registration">
   <div class="section-inner">
     <div class="section-title">
+      <h2>立即報名</h2>
+      <p>填選以下資料，系統將為您計算費用（本區塊僅提供試算依據）</p>
+    </div>
+    <div class="reg-form">
+
+      <!-- Departure -->
+      <div class="form-section-title">🚌 出發與房型試算</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>出發地點 <span class="req">*</span></label>
+          <select id="f_depart">
+            <option value="">請選擇出發地</option>
+            <option value="hsinchu">新竹忠孝大全聯</option>
+            <option value="zhubei">竹北縣府前廣場</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>同行大人人數（含會員本人）<span class="req">*</span></label>
+          <select id="f_adults" onchange="updateRoomOptions()">
+            <option value="">請選擇人數</option>
+            <option value="1">1 人（會員獨旅）</option>
+            <option value="2">2 人（會員＋1人）</option>
+            <option value="3">3 人（會員＋2人）</option>
+            <option value="4">4 人（會員＋3人）</option>
+            <option value="5">5 人（會員＋4人）</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Room Selection -->
+      <div id="roomSection" style="display:none;margin-bottom:24px;">
+        <div class="form-section-title">🛏️ 選擇房型配置</div>
+        <div class="room-options-list" id="roomOptionsList"></div>
+      </div>
+
+      <!-- Children -->
+      <div class="form-section-title">🧒 兒童同行</div>
+      <p style="font-size:13px;color:#888;margin-bottom:14px;">12歲以下兒童均屬無佔床條件（不含住宿床位）</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>0–4 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（免費・無佔床）</span></label>
+          <select id="f_young" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>4–12 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（每人 +$3,000・無佔床）</span></label>
+          <select id="f_old" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cost Summary -->
+      <div class="cost-summary" id="costSummary">
+        <div class="cs-row"><span>選擇房型方案</span><span id="cs_plan">尚未選擇</span></div>
+        <div class="cs-row"><span>大人報名費</span><span id="cs_room">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
       <h2>網上費用試算器</h2>
       <p>請幫助我們先初步填寫您的情況，系統將幫您計算費用！</p>
     </div>
@@ -977,5 +1041,1059 @@ function submitReg(){
 }
 </script>
 </body>
+</html></span></div>
+        <div class="cs-row"><span>4–12歲兒童費用</span><span id="cs_child">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>網上費用試算器</h2>
+      <p>請幫助我們先初步填寫您的情況，系統將幫您計算費用！</p>
+    </div>
+    <div class="reg-form">
+
+      <!-- Departure -->
+      <div class="form-section-title">🚌 出發資訊</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>出發地點 <span class="req">*</span></label>
+          <select id="f_depart">
+            <option value="">請選擇出發地</option>
+            <option value="hsinchu">新竹忠孝大全聯</option>
+            <option value="zhubei">竹北縣府前廣場</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>同行大人人數（含會員本人）<span class="req">*</span></label>
+          <select id="f_adults" onchange="updateRoomOptions()">
+            <option value="">請選擇人數</option>
+            <option value="1">1 人（會員獨旅）</option>
+            <option value="2">2 人（會員＋1人）</option>
+            <option value="3">3 人（會員＋2人）</option>
+            <option value="4">4 人（會員＋3人）</option>
+            <option value="5">5 人（會員＋4人）</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Room Selection -->
+      <div id="roomSection" style="display:none;margin-bottom:24px;">
+        <div class="form-section-title">🛏️ 選擇房型配置</div>
+        <div class="room-options-list" id="roomOptionsList"></div>
+      </div>
+
+      <!-- Children -->
+      <div class="form-section-title">🧒 兒童同行</div>
+      <p style="font-size:13px;color:#888;margin-bottom:14px;">12歲以下兒童均屬無佔床條件（不含住宿床位）</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>0–4 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（免費・無佔床）</span></label>
+          <select id="f_young" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>4–12 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（每人 +$3,000・無佔床）</span></label>
+          <select id="f_old" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cost Summary -->
+      <div class="cost-summary" id="costSummary">
+        <div class="cs-row"><span>選擇方案</span><span id="cs_plan">尚未選擇</span></div>
+        <div class="cs-row"><span>大人報名費</span><span id="cs_room">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-row"><span>4–12歲兒童費用</span><span id="cs_child">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-divider"></div>
+        <div class="cs-total"><span>您應繳納之總計</span><span class="amount" id="cs_total">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+      </div>
+
+      <button class="submit-btn" onclick="submitReg()">💰 計算好了！記下總價後前往填寫 Google 表單</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>新竹縣建築師公會</strong><br>
+  <span style="opacity:0.6;">期待與您共創，2026 仲夏的專屬回憶。</span><br><br>
+  <span style="font-size:12px;opacity:0.4;">本網頁資訊僅供參考，費用及行程細節以公會正式公告為準。</span>
+</footer>
+
+<script>
+// ── Tab switching ──
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+
+// ── Room options data ──
+const roomOptions = {
+  1:[
+    {id:'r1a',title:'單人方案 A（不獨佔房間）',desc:'僅會員1人參加，全程費用由公會補助涵蓋，不獨佔整間房',roomCost:0},
+    {id:'r1b',title:'單人方案 B（獨住雙人房）',desc:'僅會員1人參加，獨自入住一間雙人房（兩晚）',roomCost:10000}
+  ],
+  2:[{id:'r2a',title:'雙人房 × 1',desc:'2位大人，共住一間雙人房（兩晚）',roomCost:12000}],
+  3:[{id:'r3a',title:'三人房',desc:'3位大人｜溪頭福華：共住一間3人房；涵碧樓：住二間雙人房（或連通房）',roomCost:28000}],
+  4:[
+    {id:'r4a',title:'四人房 × 1',desc:'4位大人，共住一間四人房（涵碧樓為雙人房連通四人房）',roomCost:45000},
+    {id:'r4b',title:'雙人房 × 2',desc:'4位大人，分住兩間雙人房，各有獨立房間',roomCost:52000}
+  ],
+  5:[{id:'r5a',title:'雙人房 × 3',desc:'5位大人，房間安排依據飯店指示',roomCost:63000}]
+};
+
+let selectedRoomCost = 0;
+let selectedRoomTitle = '';
+
+function updateRoomOptions(){
+  const adults = parseInt(document.getElementById('f_adults').value)||0;
+  const section = document.getElementById('roomSection');
+  const list = document.getElementById('roomOptionsList');
+  selectedRoomCost = 0; selectedRoomTitle = '';
+  if(!adults){section.style.display='none';calcTotal();return;}
+  section.style.display='block';
+  list.innerHTML='';
+  const opts = roomOptions[adults]||[];
+  opts.forEach(opt=>{
+    const div=document.createElement('div');
+    div.className='room-opt';
+    div.id='ropt-'+opt.id;
+    div.onclick=()=>selectRoom(opt.id,opt.roomCost,opt.title);
+    div.innerHTML=<input type="radio" name="roomChoice" value=" + opt.id + ">
+      <div class="ro-body">
+        <div class="ro-title"> + opt.title + </div>
+        <div class="ro-desc"> + opt.desc + </div>
+      </div>
+      <div class="ro-price" + (opt.roomCost===0?' free':'') + ">報名費 " + (opt.roomCost===0?'<strong>免費</strong>':'NT
++opt.roomCost.toLocaleString()) + "</div>";
+    list.appendChild(div);
+  });
+  calcTotal();
+}
+
+function selectRoom(id,cost,title){
+  selectedRoomCost=cost; selectedRoomTitle=title;
+  document.querySelectorAll('.room-opt').forEach(el=>{
+    el.classList.toggle('selected',el.id==='ropt-'+id);
+    el.querySelector('input[type=radio]').checked=el.id==='ropt-'+id;
+  });
+  calcTotal();
+}
+
+function calcTotal(){
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const childCost=oldKids*3000;
+  const total=selectedRoomCost+childCost;
+
+  document.getElementById('cs_plan').textContent=selectedRoomTitle||'尚未選擇';
+  document.getElementById('cs_room').textContent=selectedRoomCost===0?'免費':'NT
+ + selectedRoomCost.toLocaleString();
+  document.getElementById('cs_child').textContent='NT
+ + childCost.toLocaleString();
+  const totalEl=document.getElementById('cs_total');
+  totalEl.textContent=total===0?'NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html>（免費 🎉）':'NT
+ + total.toLocaleString();
+  totalEl.className='amount'+(total===0?' zero':'');
+}
+
+function submitReg(){
+  const adults=document.getElementById('f_adults').value;
+  if(!adults){alert('⚠️ 請選擇同行人數');return;}
+  if(!selectedRoomTitle){alert('⚠️ 請選擇房型方案');return;}
+
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const total = selectedRoomCost + (oldKids*3000);
+  
+  if(confirm("💰 您的應繳報名總算為：NT$ " + total.toLocaleString() + "\n請記下這筆總金額！點擊確定前往填寫正式報名表！")) {
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSeXLlp0HrXeYJl5axDxYrUzBFEd-bQpQvpetbE9Oxi_K1MrGg/viewform", "_blank");
+  }
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-divider"></div>
+        <div class="cs-total">
+          <div style="display: flex; flex-direction: column;">
+            <span>應繳費用合計</span>
+            <span style="font-size: 13px; font-weight: normal; opacity: 0.8;">(僅提供試算依據)</span>
+          </div>
+          <span class="amount" id="cs_total">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>網上費用試算器</h2>
+      <p>請幫助我們先初步填寫您的情況，系統將幫您計算費用！</p>
+    </div>
+    <div class="reg-form">
+
+      <!-- Departure -->
+      <div class="form-section-title">🚌 出發資訊</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>出發地點 <span class="req">*</span></label>
+          <select id="f_depart">
+            <option value="">請選擇出發地</option>
+            <option value="hsinchu">新竹忠孝大全聯</option>
+            <option value="zhubei">竹北縣府前廣場</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>同行大人人數（含會員本人）<span class="req">*</span></label>
+          <select id="f_adults" onchange="updateRoomOptions()">
+            <option value="">請選擇人數</option>
+            <option value="1">1 人（會員獨旅）</option>
+            <option value="2">2 人（會員＋1人）</option>
+            <option value="3">3 人（會員＋2人）</option>
+            <option value="4">4 人（會員＋3人）</option>
+            <option value="5">5 人（會員＋4人）</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Room Selection -->
+      <div id="roomSection" style="display:none;margin-bottom:24px;">
+        <div class="form-section-title">🛏️ 選擇房型配置</div>
+        <div class="room-options-list" id="roomOptionsList"></div>
+      </div>
+
+      <!-- Children -->
+      <div class="form-section-title">🧒 兒童同行</div>
+      <p style="font-size:13px;color:#888;margin-bottom:14px;">12歲以下兒童均屬無佔床條件（不含住宿床位）</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>0–4 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（免費・無佔床）</span></label>
+          <select id="f_young" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>4–12 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（每人 +$3,000・無佔床）</span></label>
+          <select id="f_old" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cost Summary -->
+      <div class="cost-summary" id="costSummary">
+        <div class="cs-row"><span>選擇方案</span><span id="cs_plan">尚未選擇</span></div>
+        <div class="cs-row"><span>大人報名費</span><span id="cs_room">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-row"><span>4–12歲兒童費用</span><span id="cs_child">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-divider"></div>
+        <div class="cs-total"><span>您應繳納之總計</span><span class="amount" id="cs_total">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+      </div>
+
+      <button class="submit-btn" onclick="submitReg()">💰 計算好了！記下總價後前往填寫 Google 表單</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>新竹縣建築師公會</strong><br>
+  <span style="opacity:0.6;">期待與您共創，2026 仲夏的專屬回憶。</span><br><br>
+  <span style="font-size:12px;opacity:0.4;">本網頁資訊僅供參考，費用及行程細節以公會正式公告為準。</span>
+</footer>
+
+<script>
+// ── Tab switching ──
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+
+// ── Room options data ──
+const roomOptions = {
+  1:[
+    {id:'r1a',title:'單人方案 A（不獨佔房間）',desc:'僅會員1人參加，全程費用由公會補助涵蓋，不獨佔整間房',roomCost:0},
+    {id:'r1b',title:'單人方案 B（獨住雙人房）',desc:'僅會員1人參加，獨自入住一間雙人房（兩晚）',roomCost:10000}
+  ],
+  2:[{id:'r2a',title:'雙人房 × 1',desc:'2位大人，共住一間雙人房（兩晚）',roomCost:12000}],
+  3:[{id:'r3a',title:'三人房',desc:'3位大人｜溪頭福華：共住一間3人房；涵碧樓：住二間雙人房（或連通房）',roomCost:28000}],
+  4:[
+    {id:'r4a',title:'四人房 × 1',desc:'4位大人，共住一間四人房（涵碧樓為雙人房連通四人房）',roomCost:45000},
+    {id:'r4b',title:'雙人房 × 2',desc:'4位大人，分住兩間雙人房，各有獨立房間',roomCost:52000}
+  ],
+  5:[{id:'r5a',title:'雙人房 × 3',desc:'5位大人，房間安排依據飯店指示',roomCost:63000}]
+};
+
+let selectedRoomCost = 0;
+let selectedRoomTitle = '';
+
+function updateRoomOptions(){
+  const adults = parseInt(document.getElementById('f_adults').value)||0;
+  const section = document.getElementById('roomSection');
+  const list = document.getElementById('roomOptionsList');
+  selectedRoomCost = 0; selectedRoomTitle = '';
+  if(!adults){section.style.display='none';calcTotal();return;}
+  section.style.display='block';
+  list.innerHTML='';
+  const opts = roomOptions[adults]||[];
+  opts.forEach(opt=>{
+    const div=document.createElement('div');
+    div.className='room-opt';
+    div.id='ropt-'+opt.id;
+    div.onclick=()=>selectRoom(opt.id,opt.roomCost,opt.title);
+    div.innerHTML=<input type="radio" name="roomChoice" value=" + opt.id + ">
+      <div class="ro-body">
+        <div class="ro-title"> + opt.title + </div>
+        <div class="ro-desc"> + opt.desc + </div>
+      </div>
+      <div class="ro-price" + (opt.roomCost===0?' free':'') + ">報名費 " + (opt.roomCost===0?'<strong>免費</strong>':'NT
++opt.roomCost.toLocaleString()) + "</div>";
+    list.appendChild(div);
+  });
+  calcTotal();
+}
+
+function selectRoom(id,cost,title){
+  selectedRoomCost=cost; selectedRoomTitle=title;
+  document.querySelectorAll('.room-opt').forEach(el=>{
+    el.classList.toggle('selected',el.id==='ropt-'+id);
+    el.querySelector('input[type=radio]').checked=el.id==='ropt-'+id;
+  });
+  calcTotal();
+}
+
+function calcTotal(){
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const childCost=oldKids*3000;
+  const total=selectedRoomCost+childCost;
+
+  document.getElementById('cs_plan').textContent=selectedRoomTitle||'尚未選擇';
+  document.getElementById('cs_room').textContent=selectedRoomCost===0?'免費':'NT
+ + selectedRoomCost.toLocaleString();
+  document.getElementById('cs_child').textContent='NT
+ + childCost.toLocaleString();
+  const totalEl=document.getElementById('cs_total');
+  totalEl.textContent=total===0?'NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html>（免費 🎉）':'NT
+ + total.toLocaleString();
+  totalEl.className='amount'+(total===0?' zero':'');
+}
+
+function submitReg(){
+  const adults=document.getElementById('f_adults').value;
+  if(!adults){alert('⚠️ 請選擇同行人數');return;}
+  if(!selectedRoomTitle){alert('⚠️ 請選擇房型方案');return;}
+
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const total = selectedRoomCost + (oldKids*3000);
+  
+  if(confirm("💰 您的應繳報名總算為：NT$ " + total.toLocaleString() + "\n請記下這筆總金額！點擊確定前往填寫正式報名表！")) {
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSeXLlp0HrXeYJl5axDxYrUzBFEd-bQpQvpetbE9Oxi_K1MrGg/viewform", "_blank");
+  }
+}
+</script>
+</body>
+</html></span>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeXLlp0HrXeYJl5axDxYrUzBFEd-bQpQvpetbE9Oxi_K1MrGg/viewform', '_blank')">前往 Google 表單報名</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>新竹縣建築師公會</strong><br>
+  <span style="opacity:0.6;">期待與您共創，2026 仲夏的專屬回憶。</span><br><br>
+  <span style="font-size:12px;opacity:0.4;">本網頁資訊僅供參考，費用及行程細節以公會正式公告為準。</span>
+</footer>
+
+<script>
+// ── Tab switching ──
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+
+// ── Room options data ──
+const roomOptions = {
+  1:[
+    {id:'r1a',title:'單人方案 A（不獨佔房間）',desc:'僅會員1人參加，全程費用由公會補助涵蓋，不獨佔整間房',roomCost:0},
+    {id:'r1b',title:'單人方案 B（獨住雙人房）',desc:'僅會員1人參加，獨自入住一間雙人房（兩晚）',roomCost:10000}
+  ],
+  2:[{id:'r2a',title:'雙人房 × 1',desc:'2位大人，共住一間雙人房（兩晚）',roomCost:12000}],
+  3:[{id:'r3a',title:'三人房',desc:'3位大人｜溪頭福華：共住一間3人房；涵碧樓：住二間雙人房（或連通房）',roomCost:28000}],
+  4:[
+    {id:'r4a',title:'四人房 × 1',desc:'4位大人，共住一間四人房（涵碧樓為雙人房連通四人房）',roomCost:45000},
+    {id:'r4b',title:'雙人房 × 2',desc:'4位大人，分住兩間雙人房，各有獨立房間',roomCost:52000}
+  ],
+  5:[{id:'r5a',title:'雙人房 × 3',desc:'5位大人，房間安排依據飯店指示',roomCost:63000}]
+};
+
+let selectedRoomCost = 0;
+let selectedRoomTitle = '';
+
+function updateRoomOptions(){
+  const adults = parseInt(document.getElementById('f_adults').value)||0;
+  const section = document.getElementById('roomSection');
+  const list = document.getElementById('roomOptionsList');
+  selectedRoomCost = 0; selectedRoomTitle = '';
+  if(!adults){section.style.display='none';calcTotal();return;}
+  section.style.display='block';
+  list.innerHTML='';
+  const opts = roomOptions[adults]||[];
+  opts.forEach(opt=>{
+    const div=document.createElement('div');
+    div.className='room-opt';
+    div.id='ropt-'+opt.id;
+    div.onclick=()=>selectRoom(opt.id,opt.roomCost,opt.title);
+    div.innerHTML=<input type="radio" name="roomChoice" value=" + opt.id + ">
+      <div class="ro-body">
+        <div class="ro-title"> + opt.title + </div>
+        <div class="ro-desc"> + opt.desc + </div>
+      </div>
+      <div class="ro-price" + (opt.roomCost===0?' free':'') + ">報名費 " + (opt.roomCost===0?'<strong>免費</strong>':'NT
+
++opt.roomCost.toLocaleString()) + "</div>";
+    list.appendChild(div);
+  });
+  calcTotal();
+}
+
+function selectRoom(id,cost,title){
+  selectedRoomCost=cost; selectedRoomTitle=title;
+  document.querySelectorAll('.room-opt').forEach(el=>{
+    el.classList.toggle('selected',el.id==='ropt-'+id);
+    el.querySelector('input[type=radio]').checked=el.id==='ropt-'+id;
+  });
+  calcTotal();
+}
+
+function calcTotal(){
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const childCost=oldKids*3000;
+  const total=selectedRoomCost+childCost;
+
+  document.getElementById('cs_plan').textContent=selectedRoomTitle||'尚未選擇';
+  document.getElementById('cs_room').textContent=selectedRoomCost===0?'免費':'NT
+
+ + selectedRoomCost.toLocaleString();
+  document.getElementById('cs_child').textContent='NT
+
+ + childCost.toLocaleString();
+  const totalEl=document.getElementById('cs_total');
+  totalEl.textContent=total===0?'NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>網上費用試算器</h2>
+      <p>請幫助我們先初步填寫您的情況，系統將幫您計算費用！</p>
+    </div>
+    <div class="reg-form">
+
+      <!-- Departure -->
+      <div class="form-section-title">🚌 出發資訊</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>出發地點 <span class="req">*</span></label>
+          <select id="f_depart">
+            <option value="">請選擇出發地</option>
+            <option value="hsinchu">新竹忠孝大全聯</option>
+            <option value="zhubei">竹北縣府前廣場</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>同行大人人數（含會員本人）<span class="req">*</span></label>
+          <select id="f_adults" onchange="updateRoomOptions()">
+            <option value="">請選擇人數</option>
+            <option value="1">1 人（會員獨旅）</option>
+            <option value="2">2 人（會員＋1人）</option>
+            <option value="3">3 人（會員＋2人）</option>
+            <option value="4">4 人（會員＋3人）</option>
+            <option value="5">5 人（會員＋4人）</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Room Selection -->
+      <div id="roomSection" style="display:none;margin-bottom:24px;">
+        <div class="form-section-title">🛏️ 選擇房型配置</div>
+        <div class="room-options-list" id="roomOptionsList"></div>
+      </div>
+
+      <!-- Children -->
+      <div class="form-section-title">🧒 兒童同行</div>
+      <p style="font-size:13px;color:#888;margin-bottom:14px;">12歲以下兒童均屬無佔床條件（不含住宿床位）</p>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>0–4 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（免費・無佔床）</span></label>
+          <select id="f_young" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>4–12 歲兒童人數<span style="font-size:12px;color:#888;font-weight:normal;">（每人 +$3,000・無佔床）</span></label>
+          <select id="f_old" onchange="calcTotal()">
+            <option value="0">0 位</option>
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cost Summary -->
+      <div class="cost-summary" id="costSummary">
+        <div class="cs-row"><span>選擇方案</span><span id="cs_plan">尚未選擇</span></div>
+        <div class="cs-row"><span>大人報名費</span><span id="cs_room">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-row"><span>4–12歲兒童費用</span><span id="cs_child">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+        <div class="cs-divider"></div>
+        <div class="cs-total"><span>您應繳納之總計</span><span class="amount" id="cs_total">NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html></span></div>
+      </div>
+
+      <button class="submit-btn" onclick="submitReg()">💰 計算好了！記下總價後前往填寫 Google 表單</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>新竹縣建築師公會</strong><br>
+  <span style="opacity:0.6;">期待與您共創，2026 仲夏的專屬回憶。</span><br><br>
+  <span style="font-size:12px;opacity:0.4;">本網頁資訊僅供參考，費用及行程細節以公會正式公告為準。</span>
+</footer>
+
+<script>
+// ── Tab switching ──
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+
+// ── Room options data ──
+const roomOptions = {
+  1:[
+    {id:'r1a',title:'單人方案 A（不獨佔房間）',desc:'僅會員1人參加，全程費用由公會補助涵蓋，不獨佔整間房',roomCost:0},
+    {id:'r1b',title:'單人方案 B（獨住雙人房）',desc:'僅會員1人參加，獨自入住一間雙人房（兩晚）',roomCost:10000}
+  ],
+  2:[{id:'r2a',title:'雙人房 × 1',desc:'2位大人，共住一間雙人房（兩晚）',roomCost:12000}],
+  3:[{id:'r3a',title:'三人房',desc:'3位大人｜溪頭福華：共住一間3人房；涵碧樓：住二間雙人房（或連通房）',roomCost:28000}],
+  4:[
+    {id:'r4a',title:'四人房 × 1',desc:'4位大人，共住一間四人房（涵碧樓為雙人房連通四人房）',roomCost:45000},
+    {id:'r4b',title:'雙人房 × 2',desc:'4位大人，分住兩間雙人房，各有獨立房間',roomCost:52000}
+  ],
+  5:[{id:'r5a',title:'雙人房 × 3',desc:'5位大人，房間安排依據飯店指示',roomCost:63000}]
+};
+
+let selectedRoomCost = 0;
+let selectedRoomTitle = '';
+
+function updateRoomOptions(){
+  const adults = parseInt(document.getElementById('f_adults').value)||0;
+  const section = document.getElementById('roomSection');
+  const list = document.getElementById('roomOptionsList');
+  selectedRoomCost = 0; selectedRoomTitle = '';
+  if(!adults){section.style.display='none';calcTotal();return;}
+  section.style.display='block';
+  list.innerHTML='';
+  const opts = roomOptions[adults]||[];
+  opts.forEach(opt=>{
+    const div=document.createElement('div');
+    div.className='room-opt';
+    div.id='ropt-'+opt.id;
+    div.onclick=()=>selectRoom(opt.id,opt.roomCost,opt.title);
+    div.innerHTML=<input type="radio" name="roomChoice" value=" + opt.id + ">
+      <div class="ro-body">
+        <div class="ro-title"> + opt.title + </div>
+        <div class="ro-desc"> + opt.desc + </div>
+      </div>
+      <div class="ro-price" + (opt.roomCost===0?' free':'') + ">報名費 " + (opt.roomCost===0?'<strong>免費</strong>':'NT
++opt.roomCost.toLocaleString()) + "</div>";
+    list.appendChild(div);
+  });
+  calcTotal();
+}
+
+function selectRoom(id,cost,title){
+  selectedRoomCost=cost; selectedRoomTitle=title;
+  document.querySelectorAll('.room-opt').forEach(el=>{
+    el.classList.toggle('selected',el.id==='ropt-'+id);
+    el.querySelector('input[type=radio]').checked=el.id==='ropt-'+id;
+  });
+  calcTotal();
+}
+
+function calcTotal(){
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const childCost=oldKids*3000;
+  const total=selectedRoomCost+childCost;
+
+  document.getElementById('cs_plan').textContent=selectedRoomTitle||'尚未選擇';
+  document.getElementById('cs_room').textContent=selectedRoomCost===0?'免費':'NT
+ + selectedRoomCost.toLocaleString();
+  document.getElementById('cs_child').textContent='NT
+ + childCost.toLocaleString();
+  const totalEl=document.getElementById('cs_total');
+  totalEl.textContent=total===0?'NT<!-- REGISTRATION -->
+<section id="registration">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>蝡?勗?</h2>
+      <p>憛怠神隞乩?鞈?嚗頂蝯勗??芸??箸閮?鞎餌</p>
+    </div>
+    <div class="reg-form" style="text-align: center; padding: 60px 20px;">
+      <a href="隢?雿?_Google銵典_蝬脣?" target="_blank" style="display: inline-block; padding: 18px 40px; background: #4ade80; color: #1b4332; font-size: 20px; font-weight: bold; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(74,222,128,0.4); transition: transform 0.2s;">
+        ?? ?? Google 銵典?勗? ??
+      </a>
+      <p style="margin-top: 20px; font-size: 15px; color: #555;">
+        ??嚗??閬??Google 撣唾?嚗??董???勗?銝甈∴??漱敺?冽?餈?靽格??
+      </p>
+      
+      <!-- ???冽獢????喟?交? Google 銵典?批??函雯?葉嚗??芷銝??<a> ??嚗蒂??閮餉圾銝??iframe 璅惜 -->
+      <!-- <iframe src="隢?雿?_Google銵典_蝬脣??embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">頛銝凌?/iframe> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>?啁姘蝮?遣蝭葦?祆?</strong><br>
+  <span style="opacity:0.6;">????勗嚗?026 隞脣???撅砍??嗚?/span><br><br>
+  <span style="font-size:12px;opacity:0.4;">?祉雯??閮?靘???鞎餌??蝔敦蝭隞亙?迤撘?皞?/span>
+</footer>
+
+<script>
+// ?? Tab switching ??
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>{t.classList.toggle('active',i===n-1);});
+  document.querySelectorAll('.day-content').forEach((c,i)=>{c.classList.toggle('active',i===n-1);});
+}
+</script>
+</body>
+</html>（免費 🎉）':'NT
+ + total.toLocaleString();
+  totalEl.className='amount'+(total===0?' zero':'');
+}
+
+function submitReg(){
+  const adults=document.getElementById('f_adults').value;
+  if(!adults){alert('⚠️ 請選擇同行人數');return;}
+  if(!selectedRoomTitle){alert('⚠️ 請選擇房型方案');return;}
+
+  const oldKids=parseInt(document.getElementById('f_old').value)||0;
+  const total = selectedRoomCost + (oldKids*3000);
+  
+  if(confirm("💰 您的應繳報名總算為：NT$ " + total.toLocaleString() + "\n請記下這筆總金額！點擊確定前往填寫正式報名表！")) {
+      window.open("https://docs.google.com/forms/d/e/1FAIpQLSeXLlp0HrXeYJl5axDxYrUzBFEd-bQpQvpetbE9Oxi_K1MrGg/viewform", "_blank");
+  }
+}
+</script>
+</body>
+</html>（免費 🎉）':'NT
+
+ + total.toLocaleString();
+  totalEl.className='amount'+(total===0?' zero':'');
+}
+</script>
+</body>
 </html>
+
 
