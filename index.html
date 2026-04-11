@@ -771,7 +771,7 @@ footer strong{color:#fff;}
         </div>
       </div>
 
-      <button class="submit-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeXLlp0HrXeYJl5axDxYrUzBFEd-bQpQvpetbE9Oxi_K1MrGg/viewform', '_blank')">前往 Google 表單報名</button>
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">確認並送出報名</button>
     </div>
   </div>
 </section>
@@ -853,6 +853,74 @@ function calcTotal(){
   const totalEl=document.getElementById('cs_total');
   totalEl.textContent=total===0?'NT$0（免費 🎉）':`NT$${total.toLocaleString()}`;
   totalEl.className='amount'+(total===0?' zero':'');
+}
+
+// 替換為你的 Google Apps Script Web App URL
+const GOOGLE_APP_SCRIPT_URL = '你的_Google_Apps_Script_URL_請貼在這裡';
+
+async function submitForm() {
+  if (GOOGLE_APP_SCRIPT_URL === '你的_Google_Apps_Script_URL_請貼在這裡') {
+    alert("開發者提醒：請先在程式碼中填寫 GOOGLE_APP_SCRIPT_URL！");
+    return;
+  }
+
+  const name = document.getElementById('f_name').value.trim();
+  const phone = document.getElementById('f_phone').value.trim();
+  const email = document.getElementById('f_email').value.trim();
+  const memberid = document.getElementById('f_memberid').value.trim();
+  const departEl = document.getElementById('f_depart');
+  const depart = departEl.options[departEl.selectedIndex].text;
+  const adultsEl = document.getElementById('f_adults');
+  const adults = adultsEl.options[adultsEl.selectedIndex].text;
+  
+  if (!name || !phone || !document.getElementById('f_depart').value || !document.getElementById('f_adults').value) {
+    alert("請填寫所有必填欄位 (*)");
+    return;
+  }
+  
+  const youngEl = document.getElementById('f_young');
+  const young = youngEl.options[youngEl.selectedIndex].text;
+  const oldEl = document.getElementById('f_old');
+  const oldKids = oldEl.options[oldEl.selectedIndex].text;
+  const vegEl = document.getElementById('f_veg');
+  const veg = vegEl.options[vegEl.selectedIndex].text;
+  const note = document.getElementById('f_note').value.trim();
+  
+  const total = document.getElementById('cs_total').textContent;
+  const roomPlan = document.getElementById('cs_plan').textContent;
+  
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = '資料送出中，請稍候...';
+
+  const formData = new FormData();
+  formData.append('時間戳記', new Date().toLocaleString());
+  formData.append('姓名', name);
+  formData.append('手機號碼', phone);
+  formData.append('電子郵件', email);
+  formData.append('會員編號', memberid);
+  formData.append('出發地點', depart);
+  formData.append('同行人數', adults);
+  formData.append('房型方案', roomPlan);
+  formData.append('0-4歲兒童', young);
+  formData.append('4-12歲兒童', oldKids);
+  formData.append('素食人數', veg);
+  formData.append('備註', note);
+  formData.append('應繳費用合計', total);
+
+  try {
+    await fetch(GOOGLE_APP_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    });
+    alert("報名成功！我們已經收到您的資料。");
+  } catch(e) {
+    alert("已經送出，但發生網路異常，請重新整理確認。");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '確認並送出報名';
+  }
 }
 </script>
 </body>
