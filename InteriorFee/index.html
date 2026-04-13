@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新竹縣室內裝修審查費計算系統</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        /* A4 導出規格 (96dpi 794px x 1123px) */
+        #pdf-content {
+            background-color: white;
+            width: 794px;
+            /* 縮減 3px 容錯空間，避免 jsPDF 浮點數運算溢出產生空白第二頁 */
+            height: 1120px; 
+            padding: 35px;
+            box-sizing: border-box;
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            color: #000;
+            overflow: hidden; 
+        }
+
+        .receipt-container {
+            border: 2px solid #000;
+            padding: 25px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .formula-font {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .no-split {
+            break-inside: avoid;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="pb-10">
+
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <header class="mb-6 no-print text-center">
+            <h1 class="text-3xl font-black text-slate-800">新竹縣室內裝修審查費計算系統</h1>
+            <p class="text-slate-500 mt-1">依據「新竹縣建築物室內裝修審查收費標準」自動化計算</p>
+        </header>
+
+        <!-- 輸入面板 -->
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 mb-8 no-print">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-blue-900 border-l-4 border-blue-600 pl-3">申請資料</h3>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-600 mb-1">申請人 / 單位</label>
+                        <input type="text" id="in-applicant" placeholder="請輸入單位名稱或姓名" oninput="updateData()" 
+                               class="w-full px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-600 mb-1">裝修地址</label>
+                        <input type="text" id="in-address" placeholder="請輸入完整地址" oninput="updateData()" 
+                               class="w-full px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-green-800 border-l-4 border-green-600 pl-3">審查面積 (㎡)</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">圖審階段面積</label>
+                            <input type="number" id="in-areaPlan" step="0.01" value="0" oninput="calculate()" 
+                                   class="w-full px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 font-bold text-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">竣工階段面積</label>
+                            <input type="number" id="in-areaDone" step="0.01" value="0" oninput="calculate()" 
+                                   class="w-full px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 font-bold text-green-600">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-slate-600">
+                    目前核算總額：<span class="text-2xl font-black text-blue-600 ml-2">NT$ <span id="quick-total">0</span></span>
+                </div>
+                <button onclick="exportPDF()" class="w-full md:w-auto px-8 py-3 bg-black hover:bg-slate-800 text-white rounded-xl font-bold shadow-lg transition-all flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    產生繳費明細單 (PDF)
+                </button>
+            </div>
+        </div>
+
+        <!-- PDF 預覽區 -->
+        <div class="overflow-x-auto bg-slate-400 p-10 rounded-2xl shadow-inner no-print">
+            <div id="pdf-content" class="shadow-2xl">
+                <div class="receipt-container">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-black tracking-tight">新竹縣建築物室內裝修審查費繳費明細單</h2>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-x-6 mb-6 text-[13px]">
+                        <div class="col-span-7 space-y-3">
+                            <div class="flex border-b border-black pb-1">
+                                <span class="font-bold w-24 flex-shrink-0">申請人/單位：</span>
+                                <span id="p-applicant" class="font-medium truncate">未填寫</span>
+                            </div>
+                            <div class="flex border-b border-black pb-1">
+                                <span class="font-bold w-24 flex-shrink-0">裝修地址：</span>
+                                <span id="p-address" class="font-medium">未填寫</span>
+                            </div>
+                        </div>
+                        <div class="col-span-5 space-y-3">
+                            <div class="flex border-b border-black pb-1">
+                                <span class="font-bold w-20 flex-shrink-0">申請日期：</span>
+                                <span id="p-date" class="font-medium">---</span>
+                            </div>
+                            <div class="flex border-b border-black pb-1">
+                                <span class="font-bold w-20 flex-shrink-0">計價幣別：</span>
+                                <span class="font-medium">新台幣 (TWD)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 階段表格區 -->
+                    <div class="flex-grow flex flex-col gap-6">
+                        
+                        <!-- 圖審階段表格 (淺藍底色，黑字黑框) -->
+                        <div class="no-split">
+                            <table class="w-full text-[12px] border-collapse border-[3px] border-black">
+                                <thead>
+                                    <tr class="bg-blue-50 text-black">
+                                        <th class="border border-black p-2 text-left w-[50%]">項目說明</th>
+                                        <th class="border border-black p-2 text-right w-[25%]">計算基數</th>
+                                        <th class="border border-black p-2 text-right w-[25%]">金額 (元)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" class="border border-black p-2 font-bold bg-blue-100 text-black">一、圖說審查階段 (圖審)</td>
+                                        <td class="border border-black p-2 font-bold bg-blue-100 text-black text-right tracking-wide">申請面積：<span id="p-plan-input-area">0.00</span> ㎡</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-black p-1.5 pl-6 text-black">基本審查費 (100㎡以下)</td>
+                                        <td class="border border-black p-1.5 text-right text-black">定額</td>
+                                        <td id="p-plan-base" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr id="row-p1">
+                                        <td class="border border-black p-1.5 pl-6 text-black">增收：100~1,000㎡ 部分 ($15/㎡)</td>
+                                        <td id="p-plan-a1" class="border border-black p-1.5 text-right formula-font text-black">0.00</td>
+                                        <td id="p-plan-v1" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr id="row-p2">
+                                        <td class="border border-black p-1.5 pl-6 text-black">增收：1,000~2,000㎡ 部分 ($10/㎡)</td>
+                                        <td id="p-plan-a2" class="border border-black p-1.5 text-right formula-font text-black">0.00</td>
+                                        <td id="p-plan-v2" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr id="row-p3">
+                                        <td class="border border-black p-1.5 pl-6 text-black">增收：2,000㎡以上 部分 ($6/㎡)</td>
+                                        <td id="p-plan-a3" class="border border-black p-1.5 text-right formula-font text-black">0.00</td>
+                                        <td id="p-plan-v3" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="border border-black p-2 text-right font-bold italic text-black">圖說審查小計 (進位至百位)：</td>
+                                        <td id="p-plan-total" class="border border-black p-2 text-right font-bold text-[14px] text-black">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 竣工階段表格 (淺綠底色，黑字黑框) -->
+                        <div class="no-split">
+                            <table class="w-full text-[12px] border-collapse border-[3px] border-black">
+                                <thead>
+                                    <tr class="bg-green-50 text-black">
+                                        <th class="border border-black p-2 text-left w-[50%]">項目說明</th>
+                                        <th class="border border-black p-2 text-right w-[25%]">計算基數</th>
+                                        <th class="border border-black p-2 text-right w-[25%]">金額 (元)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" class="border border-black p-2 font-bold bg-green-100 text-black">二、竣工查驗階段 (竣工)</td>
+                                        <td class="border border-black p-2 font-bold bg-green-100 text-black text-right tracking-wide">申請面積：<span id="p-done-input-area">0.00</span> ㎡</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-black p-1.5 pl-6 text-black">基本查驗費 (100㎡以下)</td>
+                                        <td class="border border-black p-1.5 text-right text-black">定額</td>
+                                        <td id="p-done-base" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr id="row-d1">
+                                        <td class="border border-black p-1.5 pl-6 text-black">增收：100~1,000㎡ 部分 ($15/㎡)</td>
+                                        <td id="p-done-a1" class="border border-black p-1.5 text-right formula-font text-black">0.00</td>
+                                        <td id="p-done-v1" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr id="row-d2">
+                                        <td class="border border-black p-1.5 pl-6 text-black">增收：1,000~2,000㎡ 部分 ($10/㎡)</td>
+                                        <td id="p-done-a2" class="border border-black p-1.5 text-right formula-font text-black">0.00</td>
+                                        <td id="p-done-v2" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr id="row-d3">
+                                        <td class="border border-black p-1.5 pl-6 text-black">增收：2,000㎡以上 部分 ($8/㎡)</td>
+                                        <td id="p-done-a3" class="border border-black p-1.5 text-right formula-font text-black">0.00</td>
+                                        <td id="p-done-v3" class="border border-black p-1.5 text-right font-medium text-black">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="border border-black p-2 text-right font-bold italic text-black">竣工查驗小計 (進位至百位)：</td>
+                                        <td id="p-done-total" class="border border-black p-2 text-right font-bold text-[14px] text-black">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="my-5 border-t-2 border-black pt-4 no-split">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm font-black">合計應繳納審查費總額 (TOTAL DUE)：</div>
+                            <div class="text-4xl font-black">NT$ <span id="p-grand-total">0</span></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 border border-black rounded shadow-sm no-split">
+                        <h4 class="font-bold text-xs mb-2 border-b border-slate-300 pb-1 italic text-center uppercase tracking-widest">繳費與匯款資訊</h4>
+                        <div class="grid grid-cols-2 gap-x-8 text-[11px] leading-normal">
+                            <div class="space-y-1">
+                                <p>1. 匯款銀行：<strong>國泰世華銀行 新竹分行 (013)</strong></p>
+                                <p>2. 戶名：<strong>社團法人新竹縣建築師公會</strong></p>
+                                <p>3. 帳號：<strong>0400350-55250</strong></p>
+                            </div>
+                            <div class="space-y-1">
+                                <p>4. 匯款後請於備註欄註記申請人或地址以利核銷。</p>
+                                <p>5. 本單據僅供繳費參考，依新竹縣現行標準計算。</p>
+                                <p>6. 生成時間：<span id="p-timestamp">---</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('p-date').innerText = new Date().toLocaleDateString('zh-TW');
+
+        function updateData() {
+            document.getElementById('p-applicant').innerText = document.getElementById('in-applicant').value || '未填寫';
+            document.getElementById('p-address').innerText = document.getElementById('in-address').value || '未填寫';
+            document.getElementById('p-timestamp').innerText = new Date().toLocaleString('zh-TW');
+        }
+
+        function calculate() {
+            const areaP = parseFloat(document.getElementById('in-areaPlan').value) || 0;
+            const areaD = parseFloat(document.getElementById('in-areaDone').value) || 0;
+            
+            // 寫入各階段標題列的面積
+            document.getElementById('p-plan-input-area').innerText = areaP.toFixed(2);
+            document.getElementById('p-done-input-area').innerText = areaD.toFixed(2);
+
+            const resP = computeFee(areaP, 'plan');
+            const resD = computeFee(areaD, 'done');
+            updateUI('plan', resP);
+            updateUI('done', resD);
+            const total = resP.total + resD.total;
+            document.getElementById('quick-total').innerText = total.toLocaleString();
+            document.getElementById('p-grand-total').innerText = total.toLocaleString();
+            updateData();
+        }
+
+        function computeFee(area, mode) {
+            let base = 0, a1 = 0, v1 = 0, a2 = 0, v2 = 0, a3 = 0, v3 = 0;
+            if (area <= 0) return { base, a1, v1, a2, v2, a3, v3, total: 0 };
+            base = (mode === 'plan') ? 5000 : 6000;
+            if (area > 100) { a1 = Math.min(area, 1000) - 100; v1 = Math.round(a1 * 15); }
+            if (area > 1000) { a2 = Math.min(area, 2000) - 1000; v2 = Math.round(a2 * 10); }
+            if (area > 2000) { a3 = area - 2000; let rate = (mode === 'plan') ? 6 : 8; v3 = Math.round(a3 * rate); }
+            let rawTotal = base + v1 + v2 + v3;
+            let total = Math.ceil(rawTotal / 100) * 100; 
+            return { base, a1, v1, a2, v2, a3, v3, total };
+        }
+
+        function updateUI(prefix, res) {
+            document.getElementById(`p-${prefix}-base`).innerText = res.base.toLocaleString();
+            document.getElementById(`p-${prefix}-a1`).innerText = res.a1.toFixed(2);
+            document.getElementById(`p-${prefix}-v1`).innerText = res.v1.toLocaleString();
+            document.getElementById(`p-${prefix}-a2`).innerText = res.a2.toFixed(2);
+            document.getElementById(`p-${prefix}-v2`).innerText = res.v2.toLocaleString();
+            document.getElementById(`p-${prefix}-a3`).innerText = res.a3.toFixed(2);
+            document.getElementById(`p-${prefix}-v3`).innerText = res.v3.toLocaleString();
+            document.getElementById(`p-${prefix}-total`).innerText = res.total.toLocaleString();
+            const rows = [1, 2, 3];
+            rows.forEach(num => {
+                const el = document.getElementById(`row-${prefix === 'plan' ? 'p' : 'd'}${num}`);
+                el.style.opacity = (res[`v${num}`] > 0) ? 1 : 0.3;
+            });
+        }
+
+        async function exportPDF() {
+            const element = document.getElementById('pdf-content');
+            const applicantName = document.getElementById('in-applicant').value || '申請人';
+            
+            window.scrollTo(0, 0);
+
+            const opt = {
+                margin: 0,
+                filename: `新竹縣室裝審查費_${applicantName}.pdf`,
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { 
+                    scale: 3, 
+                    useCORS: true,
+                    letterRendering: true,
+                    width: 794,
+                    height: 1120, // 與 CSS 縮減後的高度一致，避免算圖溢出
+                    windowWidth: 794,
+                    x: 0,
+                    y: 0,
+                    scrollX: 0,
+                    scrollY: 0
+                },
+                jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+            };
+
+            try {
+                await html2pdf().set(opt).from(element).save();
+            } catch (error) {
+                console.error('PDF Export Failed', error);
+            }
+        }
+
+        window.onload = () => calculate();
+    </script>
+</body>
+</html>
